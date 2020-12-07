@@ -29,12 +29,13 @@ namespace mandelbrot_julia_set_tutorial
             /*
             g.DrawRectangle(pen, 100, 100, .5f, .5f);*/
 
-            Thread generateThread = new Thread(() => generateMandelbrotsetHalo(100, 200, Color.LightBlue, 1000));
+            float[] z = { 0, 0 };
+
+            Thread generateThread = new Thread(() => generateJuliaHalo(z, 100, 200, Color.LightBlue, 1000));
 
             Console.WriteLine(Color.White.R);
 
             generateThread.Start();
-            generateThread.Join();
         }
 
         void generateMandelbrotset(int iturations, int size)
@@ -119,10 +120,8 @@ namespace mandelbrot_julia_set_tutorial
                 }
             }
         }
-        void generateJuliasetHalo()
+        void generateJuliaHalo(float[] z, int iturations, int size, Color colour, int brightness = 255)
         {
-            float size = 300;
-
             int Height = drawPanel.Height;
             int Width = drawPanel.Width;
 
@@ -133,30 +132,15 @@ namespace mandelbrot_julia_set_tutorial
                     float r = x / size;
                     float i = -y / size;
 
-                    int iturations = 200;
+                    float[] c = { r, i };
 
-                    float[] z = { r, i };
-                    float[] c = { 0, -0.8f };
-
-                    float brightness = 3;
-                    
-                    int value = (int) (brightness * 255f / iturations * escapingJuliaset(z, c, iturations));
+                    int value = (int)(brightness / iturations * escapingJuliaset(z, c, iturations));
 
                     if (value > 255)
                         value = 255;
 
-                    pen.Color = Color.FromArgb(value, 0, 0);
+                    pen.Color = Color.FromArgb(value * colour.R / 255, value * colour.G / 255, value * colour.B / 255);
 
-
-
-                    /*if (containsJuliaset(z, c, iturations))
-                    {
-                        pen.Color = Color.White;
-                    }
-                    else
-                    {
-                        pen.Color = Color.Black;
-                    }*/
 
                     g.DrawRectangle(pen, x + Width / 2, y + Height / 2, .5f, .5f);
                 }

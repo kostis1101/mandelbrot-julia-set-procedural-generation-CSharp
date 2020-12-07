@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9C3ABA56-2FAE-4D96-AD2C-6B734ED5C835}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>mandelbrot_julia_set_tutorial</RootNamespace>
     <AssemblyName>mandelbrot-julia-set-tutorial</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
