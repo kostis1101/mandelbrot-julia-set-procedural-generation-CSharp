@@ -120,7 +120,7 @@ namespace mandelbrot_julia_set_tutorial
                 }
             }
         }
-        void generateJuliaHalo(float[] z, int iturations, int size, Color colour, int brightness = 255)
+        void generateJuliasetHalo(float[] z, int iturations, int size, Color colour, int brightness = 255)
         {
             int Height = drawPanel.Height;
             int Width = drawPanel.Width;
