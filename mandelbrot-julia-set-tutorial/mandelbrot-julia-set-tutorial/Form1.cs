@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,31 +19,31 @@ namespace mandelbrot_julia_set_tutorial
 
         Color white = Color.White;
 
+        int Width;
+        int Height;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void draw(object sender, PaintEventArgs e)
+        private void drawImage(object sender, PaintEventArgs e)
         {
-            g = drawPanel.CreateGraphics();
-            /*
-            g.DrawRectangle(pen, 100, 100, .5f, .5f);*/
+            Width = 1920; //imageCanvas.Width;
+            Height = 1080; //imageCanvas.Height;
+
+            Bitmap bitmap = new Bitmap(Width, Height);
+            g = Graphics.FromImage(bitmap);
 
             float[] z = { 0, 0 };
 
-            Thread generateThread = new Thread(() => generateJuliaHalo(z, 100, 200, Color.LightBlue, 1000));
-
-            Console.WriteLine(Color.White.R);
-
-            generateThread.Start();
+            generateMandelbrotsetHalo(200, 400, Color.White, 1000);
+            imageCanvas.Image = bitmap;
+            imageCanvas.Image.Save(@"C:\Users\ΙΤ\Desktop\image_test.jpg", ImageFormat.Jpeg);
         }
 
         void generateMandelbrotset(int iturations, int size)
         {
-            int Height = drawPanel.Height;
-            int Width = drawPanel.Width;
-
             for (float x = -Width / 2; x < Width / 2; x++)
             {
                 for (float y = -Height / 2; y < Height / 2; y++)
@@ -67,9 +68,6 @@ namespace mandelbrot_julia_set_tutorial
         }
         void generateMandelbrotsetHalo(int iturations, int size, Color colour, int brightness = 255)
         {
-            int Height = drawPanel.Height;
-            int Width = drawPanel.Width;
-
             for (float x = -Width / 2; x < Width / 2; x++)
             {
                 for (float y = -Height / 2; y < Height / 2; y++)
@@ -94,9 +92,6 @@ namespace mandelbrot_julia_set_tutorial
 
         void generateJuliaset(int iturations, int size, float re, float im)
         {
-            int Height = drawPanel.Height;
-            int Width = drawPanel.Width;
-
             for (float x = -Width / 2; x < Width / 2; x++)
             {
                 for (float y = -Height / 2; y < Height / 2; y++)
@@ -122,9 +117,6 @@ namespace mandelbrot_julia_set_tutorial
         }
         void generateJuliasetHalo(float[] z, int iturations, int size, Color colour, int brightness = 255)
         {
-            int Height = drawPanel.Height;
-            int Width = drawPanel.Width;
-
             for (float x = -Width / 2; x < Width / 2; x++)
             {
                 for (float y = -Height / 2; y < Height / 2; y++)

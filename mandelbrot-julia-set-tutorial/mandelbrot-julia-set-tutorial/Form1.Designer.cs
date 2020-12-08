@@ -29,34 +29,35 @@ namespace mandelbrot_julia_set_tutorial
         /// </summary>
         private void InitializeComponent()
         {
-            this.drawPanel = new System.Windows.Forms.Panel();
+            this.imageCanvas = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCanvas)).BeginInit();
             this.SuspendLayout();
             // 
-            // drawPanel
+            // imageCanvas
             // 
-            this.drawPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.drawPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.drawPanel.Location = new System.Drawing.Point(0, 0);
-            this.drawPanel.Name = "drawPanel";
-            this.drawPanel.Size = new System.Drawing.Size(874, 496);
-            this.drawPanel.TabIndex = 0;
-            this.drawPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.draw);
+            this.imageCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageCanvas.Location = new System.Drawing.Point(0, 0);
+            this.imageCanvas.Name = "imageCanvas";
+            this.imageCanvas.Size = new System.Drawing.Size(874, 496);
+            this.imageCanvas.TabIndex = 1;
+            this.imageCanvas.TabStop = false;
+            this.imageCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.drawImage);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 496);
-            this.Controls.Add(this.drawPanel);
+            this.Controls.Add(this.imageCanvas);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.imageCanvas)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel drawPanel;
+        private System.Windows.Forms.PictureBox imageCanvas;
     }
 }
 
